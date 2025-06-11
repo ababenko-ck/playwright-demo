@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from './pages/loginPage';
-import { CreateNewPasswordPage } from './pages/createNewPassword';
+import { LoginPage } from '../../../pages/loginPage';
+import { CreateNewPasswordPage } from '../../../pages/createNewPassword';
 
 test('test', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -15,7 +15,7 @@ test('test', async ({ page }) => {
   await expect(createNewPasswordPage.registerAccountHeading).toBeVisible();
   await createNewPasswordPage.clickAlreadyHaveMerchantText();
   await createNewPasswordPage.clickAlreadyHaveMerchantText();
-  await expect(loginPage.emailInput).toBeVisible();
+  await expect(loginPage.emailInputCreateYourPassword).toBeVisible();
   await expect(loginPage.passwordInput).toBeVisible();
   await expect(createNewPasswordPage.confirmPasswordInput).toBeVisible();
   await expect(createNewPasswordPage.registerButton).toBeVisible();

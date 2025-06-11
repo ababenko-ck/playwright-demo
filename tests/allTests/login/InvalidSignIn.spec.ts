@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from './pages/loginPage.js';
+import { LoginPage } from '../../pages/loginPage.js';
 
 test('InvalidSignIn', async ({ page }) => {
   // Instantiate the LoginPage object with the current page

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from './pages/loginPage.js';
-import { ForgotPasswordPage } from './pages/forgotPasswordPage.js';
+import { LoginPage } from '../../../pages/loginPage.js';
+import { ForgotPasswordPage } from '../../../pages/forgotPasswordPage.js';
 
 
 test('ForgotYourPasswordGeneralDisplay', async ({ page }) => {
