@@ -31,11 +31,10 @@ jobs:
         name: junit-report
         path: test-results/junit.xml # Path to your JUnit report
       if: always() # Ensure upload even if tests fail
-      
     - name: Publish Test Results to GitHub Actions Summary
-        uses: EnricoMi/publish-unit-test-result-action@v2 # You can use other similar actions too
-        if: always() # IMPORTANT: Run this step even if tests fail
-        with:
-          files: test-results/junit.xml # Path to your JUnit XML file
-          check_name: Test Results Summary # The name that will appear in the Checks/Summary tab
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always() # IMPORTANT: Run this step even if tests fail
+      with:
+        files: test-results/junit.xml # Path to your JUnit XML file
+        check_name: Test Results Summary # The name that will appear in the Checks/Summary tab
           # optional: fail_on_test_failures: true # Uncomment if you want this step to fail the workflow on test failures
