@@ -25,11 +25,11 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test 
       # --reporter=junit --output=test-results
-    - name: Upload JUnit test results
+    - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
         name: junit-report
-        path: test-results/junit.xml # Path to your JUnit report
+        path: test-results/** # Path to your JUnit report
       if: always() # Ensure upload even if tests fail
     - name: Publish Test Results to GitHub Actions Summary
       uses: EnricoMi/publish-unit-test-result-action@v2
