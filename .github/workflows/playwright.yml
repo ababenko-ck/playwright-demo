@@ -23,6 +23,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+<<<<<<< HEAD
       run: npx playwright test --reporter=line,allure-playwright
     - name: Install Allure Commandline
       run: npm install -g allure-commandline --save-dev
@@ -33,4 +34,21 @@ jobs:
       with:
         name: allure-report
         path: allure-report
+=======
+      run: npx playwright test 
+      # --reporter=junit --output=test-results
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: junit-report
+        path: test-results/** # Path to your JUnit report
+>>>>>>> 15bd63e0909fa367e03ca21ae6f154a62ca72ec1
       if: always() # Ensure upload even if tests fail
+    - name: Publish Test Results to GitHub Actions Summary
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always() # IMPORTANT: Run this step even if tests fail
+      with:
+        files: |
+          test-results/**/*.xml # Path to your JUnit XML file
+        check_name: Test Results Summary # The name that will appear in the Checks/Summary tab
+          # optional: fail_on_test_failures: true # Uncomment if you want this step to fail the workflow on test failures
