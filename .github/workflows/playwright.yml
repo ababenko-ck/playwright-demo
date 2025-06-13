@@ -47,6 +47,7 @@ jobs:
     #       # optional: fail_on_test_failures: true # Uncomment if you want this step to fail the workflow on test failures
   deploy:
       needs: test
+      if: always()
       runs-on: ubuntu-latest
       permissions:
         pages: write
@@ -55,3 +56,4 @@ jobs:
       steps:
         - name: Deploy to GitHub Pages
           uses: actions/deploy-pages@v4
+          if: always()
