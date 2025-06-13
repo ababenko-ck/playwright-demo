@@ -1,0 +1,69 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\playwright.config.js",
+    "rootDir": "C:/Users/ABabenko/source/repos/playwright-demo/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/ABabenko/source/repos/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/ABabenko/source/repos/playwright-demo/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.52.0",
+    "workers": 11,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Cannot find module '../../pages/loginPage.js'\nRequire stack:\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\tests\\test-1.spec.ts\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\playwright\\lib\\transform\\transform.js\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\playwright\\lib\\common\\configLoader.js\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\playwright\\lib\\program.js\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\@playwright\\test\\cli.js",
+      "stack": "Error: Cannot find module '../../pages/loginPage.js'\nRequire stack:\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\tests\\test-1.spec.ts\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\playwright\\lib\\transform\\transform.js\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\playwright\\lib\\common\\configLoader.js\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\playwright\\lib\\program.js\n- C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\node_modules\\@playwright\\test\\cli.js\n    at Object.<anonymous> (C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\tests\\test-1.spec.ts:2:1)",
+      "location": {
+        "file": "C:\\Users\\ABabenko\\source\\repos\\playwright-demo\\tests\\test-1.spec.ts",
+        "column": 1,
+        "line": 2
+      },
+      "snippet": "\u001b[90m   at \u001b[39mtest-1.spec.ts:2\n\n\u001b[0m \u001b[90m 1 |\u001b[39m \u001b[36mimport\u001b[39m { test\u001b[33m,\u001b[39m expect } \u001b[36mfrom\u001b[39m \u001b[32m'@playwright/test'\u001b[39m\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 2 |\u001b[39m \u001b[36mimport\u001b[39m { \u001b[33mLoginPage\u001b[39m } \u001b[36mfrom\u001b[39m \u001b[32m'../../pages/loginPage.js'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 3 |\u001b[39m \u001b[36mimport\u001b[39m { \u001b[33mReportsPage\u001b[39m } \u001b[36mfrom\u001b[39m \u001b[32m'../../pages/reportsPage.js'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 4 |\u001b[39m \u001b[36mimport\u001b[39m { \u001b[33mTransactionsPage\u001b[39m } \u001b[36mfrom\u001b[39m \u001b[32m'../../pages/transactionsPage.js'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 5 |\u001b[39m \u001b[36mimport\u001b[39m { \u001b[33mDashboardPage\u001b[39m } \u001b[36mfrom\u001b[39m \u001b[32m'../../pages/dashboardPage.js'\u001b[39m\u001b[33m;\u001b[39m\u001b[0m"
+    }
+  ],
+  "stats": {
+    "startTime": "2025-06-13T19:04:40.756Z",
+    "duration": 56.99699999999996,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

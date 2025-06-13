@@ -26,8 +26,11 @@ export default defineConfig({
 
   // --- REPORTER CONFIGURATION ---
    reporter: [
+    // ['html', { open: 'never' }],
+    // ['json', { outputFile: 'results.json' }]
     // ['list'], // You can keep other reporters if you like
-    ['junit', { outputFile: 'test-results/junit.xml' }] // <-- ADD THIS LINE
+    // ['junit', { outputFile: 'test-results/junit.xml' }],
+    ['allure-playwright']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -85,4 +88,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
