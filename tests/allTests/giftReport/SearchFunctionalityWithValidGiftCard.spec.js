@@ -29,12 +29,12 @@ test(' Search functionality with Valid Gift Card', async ({ page }) => {
   await giftReportPage.giftReportLink.click();
   await expect(giftReportPage.giftReportHeading).toBeVisible();
   
-  await expect(page.getByRole('listitem').filter({ hasText: 'Add Filter' }).locator('div')).toBeVisible();
-  await page.getByText('Add Filter').click();
-  await page.getByText('Gift card number', { exact: true }).click();
-  await page.getByRole('textbox', { name: 'Gift Card number' }).click();
-  await page.getByRole('textbox', { name: 'Gift Card number' }).fill('6900669198836942');
-  await page.getByRole('button', { name: 'Submit' }).click();
-  await expect(page.getByText('0 Results')).toBeVisible();
-  await expect(page.getByText('You should change your filter')).toBeVisible();
+  await expect(giftReportPage.addFilterListItem).toBeVisible();
+  await giftReportPage.addFilterButton.click();
+  await giftReportPage.giftCardNumberOption.click();
+  await giftReportPage.giftCardNumberTextbox.click();
+  await giftReportPage.giftCardNumberTextbox.fill('6900669198836942');
+  await giftReportPage.submitButton.click();
+  await expect(giftReportPage.zeroResultsText).toBeVisible();
+  await expect(giftReportPage.changeFilterText).toBeVisible();
 });

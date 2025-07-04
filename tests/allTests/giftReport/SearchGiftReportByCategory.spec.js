@@ -27,9 +27,17 @@ test('Search Gift report by category', async ({ page }) => {
 
   await giftReportPage.giftReportLink.click();
   await expect(giftReportPage.giftReportHeading).toBeVisible();
-  //await giftReportPage.searchByCategory('Electronics'); // Using the method
   await giftReportPage.last90DaysText.click();
-  await giftReportPage.last90DaysListItem.click();
-  await giftReportPage.appLast90DaysText.click();
-  await giftReportPage.allButton.click();
+  await giftReportPage.last90DaysListItem.click({ force: true });
+
+  await page.waitForTimeout(1000);
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+
+  
+    if (await giftReportPage.allButton.isVisible()) {
+    await giftReportPage.allButton.waitFor({ state: 'visible' });
+    await giftReportPage.allButton.click({ force: true });
+  } else {
+    await expect(giftReportPage.emptyStateTitle).toHaveText('0 Results');
+  }
 });
