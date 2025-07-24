@@ -28,7 +28,6 @@ Close the modal
 test('Create a new transaction with CC transaction type Save', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const transactionsPage= new TransactionsPage(page);
-  const addANewCustomerPage = new AddANewCustomerPage(page);
   const futureExpDate = generateFutureExpirationDate();
   const uniqueAmount = generateUniqueAmount();
   const testCard1 = authData.testCards.testCard1;
@@ -38,9 +37,10 @@ test('Create a new transaction with CC transaction type Save', async ({ page }) 
   await transactionsPage.navigateToTransactions();
   await transactionsPage.waitForPageToLoad();
   await transactionsPage.newTransactionButton.click();
-  await page.waitForTimeout(3000);
+  await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
+  // await page.waitForTimeout(3000);
 
   await transactionsPage.createNewTransactionByType(uniqueAmount, futureExpDate, testCard1, option);
-  await page.waitForTimeout(3000);
-  await transactionsPage.dialogCloseButton.click();
+  await expect(transactionsPage.dialogXButton).toBeVisible();
+  await transactionsPage.dialogXButton.click();
 });

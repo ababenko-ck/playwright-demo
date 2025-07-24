@@ -42,11 +42,13 @@ test('Create a new transaction using details of existing transaction', async ({ 
 
   await transactionsPage.transactionsLink.click();
   await transactionsPage.verifyTransactionsHeading();
+  await transactionsPage.filterCustomersByCardholderName();
 
   await transactionsPage.clickFirstTransactionInGrid();
   await expect(transactionsPage.generalInformationButton).toBeVisible();
-  await transactionsPage.newTransactionButton.click();
+  await expect(transactionsPage.sidebarNewTransactionButton).toBeVisible();
+  await transactionsPage.sidebarNewTransactionButton.click();
   await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
-  await addANewCustomerPage.createNewTransactionFromExistingCustomer(uniqueAmount, futureExpDate, testCard1);
+  await addANewCustomerPage.createNewTransactionFromExistingCustomerWithCard(uniqueAmount);
 
 });

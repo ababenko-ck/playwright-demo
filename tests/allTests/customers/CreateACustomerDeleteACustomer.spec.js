@@ -25,7 +25,7 @@ wait 5 seconds
 verify that "General" is visible on the page
 */
 
-test('Create a Customer', async ({ page }) => {
+test('Create a Customer and Delete a Customer', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
 
@@ -36,6 +36,9 @@ test('Create a Customer', async ({ page }) => {
   const testCard1 = authData.testCards.testCard1;
 
   await addANewCustomerPage.navigateToCustomers();
+  await addANewCustomerPage.waitForPageToLoad();
   await addANewCustomerPage.createNewCustomer(uniqueLastName, futureExpDate, testCard1);
   await addANewCustomerPage.viewCustomerDetails();
+  await addANewCustomerPage.deleteCustomer();
 });
+

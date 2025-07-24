@@ -7,7 +7,7 @@ export class ForgotPasswordPage {
     this.page = page;
 
     this.logoImg = page.getByRole('img', { name: 'logo' });
-    this.emailInput = page.getByRole('textbox', { name: 'user@gmail.com' });
+    this.emailInput = page.getByRole('textbox', { name: 'user@email.com' });
    
     this.formTitle = page.locator('.auth__form__title');
     this.welcomeMessage = page.locator('.dashboard__message');

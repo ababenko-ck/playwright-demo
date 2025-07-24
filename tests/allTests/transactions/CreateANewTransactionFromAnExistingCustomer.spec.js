@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage';
 import { AddANewCustomerPage } from '../../pages/addANewCustomer';
+import { TransactionsPage } from '../../pages/transactionsPage'; 
 import { generateFutureExpirationDate, generateUniqueAmount } from '../../pages/Generator';
 import authData from '../../data/auth';
 
@@ -36,13 +37,19 @@ wait 5 seconds
 test('Create s new Transaction from an existing Customer', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
+  const transactionsPage = new TransactionsPage(page);
   const futureExpDate = generateFutureExpirationDate();
   const uniqueAmount = generateUniqueAmount();
   const testCard1 = authData.testCards.testCard1;
 
   await loginPage.login();
   await addANewCustomerPage.navigateToCustomers();
+  await addANewCustomerPage.filterCustomersByLastName();
+  await expect(addANewCustomerPage.firstCustomerInGrid).toBeVisible();
   await addANewCustomerPage.firstCustomerInGrid.click();
+
+  await transactionsPage.sidebarNewTransactionButton.click();
+  await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
   await addANewCustomerPage.createNewTransactionFromExistingCustomer(uniqueAmount, futureExpDate, testCard1);
 
   const referenceNumberText = await addANewCustomerPage.referenceNumber.textContent();

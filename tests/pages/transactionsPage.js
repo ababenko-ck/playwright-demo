@@ -11,6 +11,9 @@ export class TransactionsPage {
     this.transactionsLink = page.getByRole('link', { name: 'Transactions' });
     this.generalInformationButton = page.getByRole('button', { name: 'General information' });
     this.newTransactionButton = page.getByRole('button', { name: 'New Transaction' });
+
+    this.sidebar = page.locator('.grid-sidebar');
+    this.sidebarNewTransactionButton = this.sidebar.getByRole('button', { name: 'New Transaction' });
     this.addNewTransactionHeading = page.getByRole('heading', { name: 'Add new transaction' });
     this.amountTextBox = page.getByRole('textbox', { name: '$' });
     this.sendSmsReceiptText = page.getByText('Send SMS receipt');
@@ -21,13 +24,14 @@ export class TransactionsPage {
     this.cardNumberInput = page.frameLocator('iframe[data-ifields-id="card-number"]').locator('#data');
     this.transactionExpDate = page.locator('input[name="expiry"]');
     this.processButton = page.locator('.modal__footer .btn--primary');
-    this.transactionProcessedHeading = page.getByRole('heading', { name: 'Transaction processed!' });
     this.transactionType = page.locator('select[name="transactionType"]');
     this.AuthCode = page.locator('input[name="authCode"]');
     this.zip = page.locator('input[name="zip"]').first();
     this.dialogCloseButton = page.locator('.modal__close');
+    this.dialogXButton = page.locator('.icon--close--text');
     this.checkButton = page.getByRole('button', { name: 'Check' });
     this.accountName = page.locator('input[name="accountName"]');
+    this.modal = page.locator('.modal__content__wrapper');
 
     this.routingNumber = page.locator('input[name="routingNumber"]');
     this.accountNumber = page.frameLocator('iframe[data-ifields-id="ach"]').locator('input[placeholder="Account number"]');
@@ -41,11 +45,18 @@ export class TransactionsPage {
     this.cardNumberTexbox = page.getByRole('textbox', { name: 'Last 4 Digits' });
     this.SubmitButton = page.getByRole('button', { name: 'Submit' });
     this.transactionTable = page.locator('.table');
+    this.columnCardholderName = page.locator('#header-filter-xName');
   }
 
    async waitForPageToLoad() {
     await this.page.waitForLoadState('networkidle');  
   }
+
+  async filterCustomersByCardholderName() {
+        await expect(this.columnCardholderName).toBeVisible();
+        await this.columnCardholderName.click();
+        await this.columnCardholderName.fill('TestUser');
+    }
 
    async navigateToTransactions() {
         await this.transactionsLink.click();
@@ -68,7 +79,7 @@ export class TransactionsPage {
         await this.cardNumberInput.fill(cardNumber)
         await this.transactionExpDate.clear();
         await this.transactionExpDate.fill(expDate);
-        await this.page.waitForTimeout(3000);
+        await expect(this.processButton).toBeVisible();;
         await this.processButton.click();
         await expect(this.transactionProcessedHeading).toBeVisible();
     }

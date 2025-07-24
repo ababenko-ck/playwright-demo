@@ -44,5 +44,4 @@ test('Navigate to Send Payment Request page from Customers page', async ({ page 
   await addANewCustomerPage.iconMenuWhite.click();
   await addANewCustomerPage.sendPaymentRequestButton.click();
   await expect(addANewCustomerPage.SendPaymentRequestHeader).toContainText('Send Payment Request');
-
 });
