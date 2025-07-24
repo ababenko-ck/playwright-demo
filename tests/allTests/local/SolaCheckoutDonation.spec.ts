@@ -2,12 +2,14 @@ import { test, expect, type Page  } from '@playwright/test';
 import { SolaCheckoutPage } from '../../pages/solaCheckoutPage';
 import { GooglePayPage } from '../../pages/googlePayPage';
 import { env } from 'process';
+import authData from '../../data/auth';
 
 let page: Page;
 
 test.beforeAll('open', async ({ browser }) => {
   page = await browser.newPage();
-  await page.goto(env.SOLA_CHECKOUT_BASEURL + '/charityname');
+  const environment = "local";
+  await page.goto(authData[environment].baseURL + '/charityname');
 
   await expect(page).toHaveTitle('Sola Checkout');
 });

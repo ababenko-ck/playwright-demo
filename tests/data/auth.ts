@@ -22,6 +22,9 @@ const authData = {
       password: 'Automation1234567!'
     },
   },
+  local: {
+    baseURL: 'http://localhost:3000/',
+  },
   testCards: {
     testCard1: '5555444433331111',
     testCard2: '4111111111111111',
