@@ -1,18 +1,17 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/loginPage.js';
-import { TransactionsPage } from '../../pages/transactionsPage.js';
-
+import { LoginPage } from '../../pages/loginPage';
+import { TransactionsPage } from '../../pages/transactionsPage';
 /*LoginRebrand
-LoginRebrand
 click on "Transactions" page
 wait 3 seconds
 check that page contains text "Transactions"
 click "All" if page contains "All"
 wait 3 seconds
-check that page contains "Print"
+click on button "Export"
+wait 3 seconds
 */
 
-test('Print Transactions', async ({ page }) => {
+test(' Export Transactions', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const transactionsPage = new TransactionsPage(page);
 
@@ -20,10 +19,8 @@ test('Print Transactions', async ({ page }) => {
   await transactionsPage.navigateToTransactions();
   await transactionsPage.waitForPageToLoad();
 
-  await expect(transactionsPage.printButton).toBeVisible();
-  await expect(transactionsPage.printButton).toBeEnabled();
-  await transactionsPage.printButton.click();
+  await expect(transactionsPage.exportButton).toBeVisible();
+  await expect(transactionsPage.exportButton).toBeEnabled();
+  await transactionsPage.exportButton.click();
   await expect(transactionsPage.actionButtonDropdown).toBeVisible();
 });
-
- 

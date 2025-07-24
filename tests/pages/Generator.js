@@ -19,3 +19,12 @@ export function generateUniqueAmount() {
   const amount = Math.random() * (max - min) + min;
   return `$${amount.toFixed(2)}`;
 }
+
+export function getTodaysDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate() -1 ;
+
+  return `${mm}/${dd}/${yyyy}`;
+}

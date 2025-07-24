@@ -26,6 +26,15 @@ const authData = {
     testCard1: '5555444433331111',
     testCard2: '4111111111111111',
     testCard3: '4222222222222222'
+  },
+
+  codes: {
+    authCode: 'T4321A'
+  },
+
+   checking: {
+    routingNumber: '021000021',
+    accountNumber: '52184720082',
   }
 };
 

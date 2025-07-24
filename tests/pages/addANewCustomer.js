@@ -50,10 +50,13 @@ export class AddANewCustomerPage {
 
     async createNewTransactionFromExistingCustomer(amount, expDate, cardNumber) {
         await this.newTransactionButton.click();
+        await this.amountTextbox.clear();
         await this.amountTextbox.fill(amount);
         await this.reactSelectIndicators.click();
         await this.reactSelectLastOption.click();
+        await this.cardNumberInput.clear();
         await this.cardNumberInput.fill(cardNumber)
+        await this.transactionExpDate.clear();
         await this.transactionExpDate.fill(expDate);
         await this.processButton.click();
         await expect(this.transactionProcessedHeading).toBeVisible();
@@ -63,9 +66,12 @@ export class AddANewCustomerPage {
     async createNewCustomer(lastName, expDate, cardNumber) {
         await this.newCustomerButton.click();
         await this.lastNameTextbox.click();
+        await this.lastNameTextbox.clear();
         await this.lastNameTextbox.fill(lastName);
         await this.expDateTextbox.click();
+        await this.expDateTextbox.clear();
         await this.expDateTextbox.fill(expDate);
+        await this.cardNumberInput.clear();
         await this.cardNumberInput.fill(cardNumber)
         await this.processButton.click();
         await expect(this.customerCreatedHeading).toBeVisible();
