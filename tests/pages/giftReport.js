@@ -18,6 +18,11 @@ class GiftReportPage {
         this.zeroResultsText = page.getByText('0 Results');
         this.changeFilterText = page.getByText('You should change your filter');
         this.emptyStateTitle = page.locator('.table--primary__emptystate__title');
+
+        this.summaryButton = page.getByRole('link', { name: 'Summary' });
+        this.exportButton = page.getByRole('button', { name: 'Export' }); 
+        this.printButton = page.getByRole('button', { name: 'Print' }); 
+
     }
 
     async searchByCategory(category) {

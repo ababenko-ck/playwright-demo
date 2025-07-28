@@ -7,15 +7,11 @@ import { DashboardPage } from '../../pages/dashboardPage.js';
 click on "Reports" page
 wait 3 seconds
 check that page contains text "Reports"
-wait 3 seconds
-click on the second "Delete" button
-wait 3 seconds
-click on "Delete report"
+click on "Export" below "Other Reports"
 wait 5 seconds
-click on "close"
 */
 
-test('Delete a Custom Saved Report', async ({ page }) => {
+test('Export Other Reports', async ({ page }) => {
 const loginPage = new LoginPage(page);
 const reportsPage = new ReportsPage(page);
 const dashboardPage = new DashboardPage(page);
@@ -25,17 +21,9 @@ await dashboardPage.navigateToReports();
 await reportsPage.waitForPageToLoad();
 await expect(reportsPage.reportsHeading).toBeVisible();
 
-await expect(reportsPage.deleteReportButton).toBeVisible();
-await reportsPage.deleteReportButton.click({ force: true });
-await page.waitForTimeout(3000);
-
-await expect(reportsPage.modalHeaderConfirm).toBeVisible();
-await expect(reportsPage.modalHeaderConfirm).toHaveText('Confirm Report Deletion');
-await expect(reportsPage.modalButtonDelete).toBeVisible();
-await reportsPage.modalButtonDelete.click(); 
-await page.waitForTimeout(3000);
-
+await expect(reportsPage.exportOtherReportsButton).toBeVisible();
+await reportsPage.exportOtherReportsButton.click({ force: true });
 await expect(reportsPage.modalContent).toBeVisible();
-await reportsPage.modalButtonX.click();
+await page.waitForTimeout(3000);
 await expect(reportsPage.modalContent).not.toBeVisible();
 });
