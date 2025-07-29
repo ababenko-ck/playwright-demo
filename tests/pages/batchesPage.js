@@ -8,7 +8,6 @@ export class BatchesPage {
     this.openBatchesButton = page.getByRole('button', { name: 'Open Batches' });
     this.closedBatchesButton = page.getByRole('button', { name: 'Closed Batches' });
     this.showSummaryButton = page.getByRole('button', { name: 'Show Summary' });
-
     this.breakdownByCardText = page.getByText('Breakdown by Card');
     this.exportButton = page.getByRole('button', { name: 'Export' });
     this.printButton = page.getByRole('button', { name: 'Print' });
@@ -33,6 +32,11 @@ export class BatchesPage {
 
   async showSummary() {
     await this.showSummaryButton.click();
+  }
+
+async clickExportButton() {
+    await expect(this.exportButton).toBeVisible({ timeout: 10000 });
+    await this.exportButton.click();
   }
 
 }
