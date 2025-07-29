@@ -39,4 +39,9 @@ async clickExportButton() {
     await this.exportButton.click();
   }
 
+async clickPrintButton() {
+    await expect(this.printButton).toBeVisible({ timeout: 10000 }); // Osigurajte da je gumb vidljiv prije klika
+    await this.printButton.click();
+  }
+
 }
