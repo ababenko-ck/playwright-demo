@@ -16,6 +16,8 @@ export class BatchesPage {
     this.batchSummaryText = page.getByText('Batch Summary');
     this.countText = page.locator('.pie-chart-text.count');
     this.openBatchesLoaded = page.getByRole('button', { name: 'ID #' });
+    this.searchByBatchNumberInput = page.getByPlaceholder('Search by Batch Number');
+    this.noResultsText = page.getByText('0 results');
   }
 
   async navigateToOpenBatches() {
@@ -42,6 +44,12 @@ async clickExportButton() {
 async clickPrintButton() {
     await expect(this.printButton).toBeEnabled({ timeout: 60000 });
     await this.printButton.click();
+  }
+
+   async searchForBatchNumber(batchNumber) {
+    await expect(this.searchByBatchNumberInput).toBeVisible({ timeout: 10000 }); 
+    await this.searchByBatchNumberInput.fill(batchNumber); 
+    await this.searchByBatchNumberInput.press('Enter'); 
   }
 
 }
