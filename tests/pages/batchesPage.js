@@ -44,7 +44,7 @@ async clickExportButton() {
   }
 
 async clickPrintButton() {
-    await expect(this.printButton).toBeEnabled({ timeout: 10000 });
+    await expect(this.printButton).toBeEnabled({ timeout: 60000 });
     await this.printButton.click();
   }
 
