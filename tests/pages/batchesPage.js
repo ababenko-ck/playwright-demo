@@ -18,6 +18,8 @@ export class BatchesPage {
     this.openBatchesLoaded = page.getByRole('button', { name: 'ID #' });
     this.searchByBatchNumberInput = page.getByPlaceholder('Search by Batch Number');
     this.noResultsText = page.getByText('0 results');
+    this.firstOpenBatchIdElement = page.locator('div.flex--primary.type--wgt--medium').first();
+
   }
 
   async navigateToOpenBatches() {
@@ -42,7 +44,7 @@ async clickExportButton() {
   }
 
 async clickPrintButton() {
-    await expect(this.printButton).toBeEnabled({ timeout: 60000 });
+    await expect(this.printButton).toBeEnabled({ timeout: 10000 });
     await this.printButton.click();
   }
 
@@ -50,6 +52,12 @@ async clickPrintButton() {
     await expect(this.searchByBatchNumberInput).toBeVisible({ timeout: 10000 }); 
     await this.searchByBatchNumberInput.fill(batchNumber); 
     await this.searchByBatchNumberInput.press('Enter'); 
+  }
+  async getFirstOpenBatchId() {
+    await expect(this.firstOpenBatchIdElement).toBeVisible({ timeout: 60000 });
+    const batchId = await this.firstOpenBatchIdElement.textContent();
+    const numericBatchId = batchId ? batchId.match(/\d+/)?.[0] : null; 
+    return numericBatchId ? numericBatchId.trim() : '';
   }
 
 }

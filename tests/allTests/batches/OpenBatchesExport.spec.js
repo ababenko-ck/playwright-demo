@@ -21,7 +21,7 @@ test('Export Open Batches', async ({ page }) => {
   const batchesPage = new BatchesPage(page);
   await loginPage.login();
   await batchesPage.navigateToOpenBatches();
-  await page.waitForTimeout(60000); 
+  await page.waitForTimeout(20000); 
   const [download] = await Promise.all([
     page.waitForEvent('download', { timeout: 30000 }),
     batchesPage.clickExportButton()
