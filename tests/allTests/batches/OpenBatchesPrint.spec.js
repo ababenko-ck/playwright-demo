@@ -19,7 +19,7 @@ test('Open Batches Print', async ({ page }) => {
 
   await loginPage.login();
   await batchesPage.navigateToOpenBatches();
-  await page.waitForTimeout(60000); 
+  await page.waitForTimeout(20000); 
   await batchesPage.clickPrintButton();
   await page.waitForTimeout(3000);
 
