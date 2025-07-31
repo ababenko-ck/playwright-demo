@@ -25,11 +25,8 @@ test('Closed Batches UI Validation', async ({ page }) => {
   const batchesPage = new BatchesPage(page);
 
   await loginPage.login();
-
   await batchesPage.goToClosedBatchesDirectly();
-
   await batchesPage.showSummary();
-
   await expect(batchesPage.breakdownByCardText).toBeVisible();
   await expect(batchesPage.exportButton).toBeVisible();
   await expect(batchesPage.printButton).toBeVisible();
