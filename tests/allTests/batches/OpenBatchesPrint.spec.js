@@ -16,12 +16,11 @@ test('Open Batches Print', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const batchesPage = new BatchesPage(page);
 
-
   await loginPage.login();
   await batchesPage.navigateToOpenBatches();
-  await page.waitForTimeout(60000); 
+  await page.waitForTimeout(20000); 
+
   await batchesPage.clickPrintButton();
   await page.waitForTimeout(3000);
-
   console.log('The print button has been clicked and waits are complete. The system print dialog for Open Batches is open.');
 });
