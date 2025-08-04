@@ -7,18 +7,18 @@ import authData from '../../data/auth';
 click on "Gift Report" page
 wait 3 seconds
 check that page contains text "Gift Report"
-click "Add filter"
-click "Gift card number"
-enter "6900669198836942"
-click "Submit"
+click on "Add Filter"
+click on "Gift card number"
+enter "5555444433331111" in the "Gift card number"
+click "DONE"
 wait 3 seconds
-verify that "0 Results" text is visible on the page
+verify that "0 Results" is visible on the page
 */
 
-test('Search functionality with Valid Gift Card', async ({ page }) => {
+test('Invalid Gift card number on Gift Reports (Activity)', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const giftReportPage = new GiftReportPage(page); 
-  const validTestCard = authData.testCards.validTestCard;
+  const invalidTestCard = authData.testCards.invalidTestCard;
 
   await loginPage.login();
 
@@ -29,7 +29,7 @@ test('Search functionality with Valid Gift Card', async ({ page }) => {
   await giftReportPage.addFilterButton.click();
   await giftReportPage.giftCardNumberOption.click();
   await giftReportPage.giftCardNumberTextbox.click();
-  await giftReportPage.giftCardNumberTextbox.fill(validTestCard);
+  await giftReportPage.giftCardNumberTextbox.fill(invalidTestCard);
   await giftReportPage.submitButton.click();
   await expect(giftReportPage.zeroResultsText).toBeVisible();
   await expect(giftReportPage.changeFilterText).toBeVisible();

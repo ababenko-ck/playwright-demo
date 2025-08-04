@@ -1,8 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage.js';
-import { ReportsPage } from '../../pages/reportsPage.js';
-import { TransactionsPage } from '../../pages/transactionsPage.js';
-import { DashboardPage } from '../../pages/dashboardPage.js';
 import GiftReportPage from '../../pages/giftReport.js';
 
 /*LoginRebrand
@@ -18,9 +15,6 @@ wait 3 seconds
 
 test('Search Gift report by category', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  const reportsPage = new ReportsPage(page);
-  const transactionsPage = new TransactionsPage(page);
-  const dashboardPage = new DashboardPage(page);
   const giftReportPage = new GiftReportPage(page); 
 
   await loginPage.login();

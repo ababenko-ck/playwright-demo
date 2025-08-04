@@ -5,6 +5,7 @@ export class DashboardPage {
     this.page = page;
     this.reportsLink = page.getByRole('link', { name: 'Reports' });
     this.dashboardLink = page.getByRole('link', { name: 'Dashboard' });
+    this.recurringSchedulesLink = page.getByRole('link', { name: 'Recurring Schedules' });
     this.welcomeHeading = page.getByRole('heading', { name: 'Welcome to Sola' });
     this.dateRangeMenu = page.getByRole('menu').locator('div');
     this.customDateRangeButton = page.getByText('Custom', { exact: true });
@@ -20,6 +21,10 @@ export class DashboardPage {
 
   async navigateToReports() {
     await this.reportsLink.click();
+  }
+
+  async navigateToRecurringSchedules() {
+    await this.recurringSchedulesLink.click();
   }
 
   async waitForPageToLoad() {

@@ -25,7 +25,8 @@ const authData = {
   testCards: {
     testCard1: '5555444433331111',
     testCard2: '4111111111111111',
-    testCard3: '4222222222222222'
+    validTestCard: '6900669198836942',
+    invalidTestCard: '5555444433331111'
   },
 
   codes: {
