@@ -27,23 +27,20 @@ test('Open Batches Verify Created Transactions', async ({ page }) => {
   await loginPage.login();
   await batchesPage.navigateToOpenBatches();
   console.log('Navigated to Open Batches and data loaded.');
-  await batchesPage.showSummary();
-  console.log('Clicked "Show Summary".');
-  console.log('Verifying presence of key text elements...');
-  await expect(page.getByText('Breakdown by Card')).toBeVisible({ timeout: 10000 });
-  console.log('"Breakdown by Card" is visible.');
-  await expect(batchesPage.exportButton).toBeVisible({ timeout: 10000 });
-  console.log('"Export" button is visible.');
-  await expect(batchesPage.printButton).toBeVisible({ timeout: 10000 });
-  console.log('"Print" button is visible.');
-  await expect(batchesPage.saleSummaryText).toBeVisible({ timeout: 10000 });
-  console.log('"SALE SUMMARY BY CARD TYPE" is visible.');
-  await expect(batchesPage.creditSummaryText).toBeVisible({ timeout: 10000 });
-  console.log('"CREDIT SUMMARY BY CARD TYPE" is visible.');
-  await expect(batchesPage.batchSummaryText).toBeVisible({ timeout: 10000 });
-  console.log('"Batch Summary" is visible.');
-  await expect(batchesPage.countText.first()).toBeVisible({ timeout: 10000 });
-  console.log('"count" text is visible.');
 
+  await batchesPage.showSummary();
+  await expect(page.getByText('Breakdown by Card')).toBeVisible({ timeout: 10000 });
+
+  await expect(batchesPage.exportButton).toBeVisible({ timeout: 10000 });
+
+  await expect(batchesPage.printButton).toBeVisible({ timeout: 10000 });
+
+  await expect(batchesPage.saleSummaryText).toBeVisible({ timeout: 10000 });
+
+  await expect(batchesPage.creditSummaryText).toBeVisible({ timeout: 10000 });
+
+  await expect(batchesPage.batchSummaryText).toBeVisible({ timeout: 10000 });
+
+  await expect(batchesPage.countText.first()).toBeVisible({ timeout: 10000 });
   console.log('The "Open Batches Verify Created Transactions" test completed successfully.');
 });

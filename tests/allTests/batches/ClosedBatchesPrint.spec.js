@@ -21,12 +21,13 @@ test('Closed Batches Print', async ({ page }) => {
   await loginPage.login();
   await batchesPage.goToClosedBatchesDirectly();
   console.log('Relying on dynamic waiting for batch data to load before print...');
+
   const firstBatchId = await batchesPage.getFirstOpenBatchId(); 
   expect(firstBatchId).not.toBeNull();
   expect(firstBatchId).not.toBe('');
   console.log(`First batch ID found: ${firstBatchId}. Data should be loaded.`);
+  
   await batchesPage.clickPrintButton();
   await page.waitForTimeout(3000);
-
   console.log('The print button has been clicked and waits are complete. The system print dialog is open.');
 });
