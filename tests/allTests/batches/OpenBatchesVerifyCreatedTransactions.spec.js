@@ -23,24 +23,14 @@ test('Open Batches Verify Created Transactions', async ({ page }) => {
 
   const loginPage = new LoginPage(page);
   const batchesPage = new BatchesPage(page);
-
   await loginPage.login();
   await batchesPage.navigateToOpenBatches();
-  console.log('Navigated to Open Batches and data loaded.');
-
   await batchesPage.showSummary();
   await expect(page.getByText('Breakdown by Card')).toBeVisible({ timeout: 10000 });
-
   await expect(batchesPage.exportButton).toBeVisible({ timeout: 10000 });
-
   await expect(batchesPage.printButton).toBeVisible({ timeout: 10000 });
-
   await expect(batchesPage.saleSummaryText).toBeVisible({ timeout: 10000 });
-
   await expect(batchesPage.creditSummaryText).toBeVisible({ timeout: 10000 });
-
   await expect(batchesPage.batchSummaryText).toBeVisible({ timeout: 10000 });
-
   await expect(batchesPage.countText.first()).toBeVisible({ timeout: 10000 });
-  console.log('The "Open Batches Verify Created Transactions" test completed successfully.');
 });
