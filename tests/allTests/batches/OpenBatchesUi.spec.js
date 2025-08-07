@@ -23,11 +23,9 @@ test('Open Batches UI Validation', async ({ page }) => {
 
   const loginPage = new LoginPage(page);
   const batchesPage = new BatchesPage(page); 
-
   await loginPage.login();
   await batchesPage.navigateToOpenBatches(); 
   await batchesPage.showSummary();
-
   await expect(batchesPage.breakdownByCardText).toBeVisible();
   await expect(batchesPage.exportButton).toBeVisible();
   await expect(batchesPage.printButton).toBeVisible();

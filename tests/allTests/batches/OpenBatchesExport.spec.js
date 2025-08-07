@@ -27,12 +27,9 @@ test('Export Open Batches', async ({ page }) => {
     page.waitForEvent('download', { timeout: 30000 }),
     batchesPage.clickExportButton()
   ]);
-
   await page.waitForTimeout(3000);
   expect(download).toBeDefined();
   const suggestedFileName = download.suggestedFilename();
-  console.log(`Suggested file name: ${suggestedFileName}`);
-
   expect(suggestedFileName).toMatch(/\.(csv|xlsx|pdf)$/i); 
   const downloadsPath = path.resolve(__dirname, '../../temp_downloads');
   if (!fs.existsSync(downloadsPath)) {
@@ -40,8 +37,6 @@ test('Export Open Batches', async ({ page }) => {
   }
   const filePath = path.join(downloadsPath, suggestedFileName);
   await download.saveAs(filePath);
-  console.log(`File saved to: ${filePath}`);
 
   expect(fs.existsSync(filePath)).toBeTruthy();
-  console.log('Export button clicked, download verified, and waits completed.');
 });

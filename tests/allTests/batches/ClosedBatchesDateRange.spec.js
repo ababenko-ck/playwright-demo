@@ -18,11 +18,7 @@ test('Closed Batches Date Range Selection - Last 7 Days', async ({ page }) => {
   const batchesPage = new BatchesPage(page);
   
   await loginPage.login();
-  console.log('Logged in successfully.');
-
   await batchesPage.goToClosedBatchesDirectly();
-  console.log('Navigated to Closed Batches.');
-
   await batchesPage.selectLast7DaysDateRange();
-  console.log('Selected "Last 7 Days" option. Test concluding as requested.');
+
 });

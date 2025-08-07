@@ -17,10 +17,8 @@ test('Export Closed Batches', async ({ page }) => {
 
   const loginPage = new LoginPage(page);
   const batchesPage = new BatchesPage(page);
-
   await loginPage.login();
   await batchesPage.goToClosedBatchesDirectly();
-  console.log('Relying on dynamic waiting for batch data to load before export...');
 
   const firstBatchId = await batchesPage.getFirstOpenBatchId(); 
   expect(firstBatchId).not.toBeNull();
@@ -30,12 +28,10 @@ test('Export Closed Batches', async ({ page }) => {
     page.waitForEvent('download', { timeout: 30000 }),
     batchesPage.clickExportButton()
   ]);
-  
   await page.waitForTimeout(3000);
   expect(download).toBeDefined();
-  const suggestedFileName = download.suggestedFilename();
-  console.log(`Suggested file name: ${suggestedFileName}`);
 
+  const suggestedFileName = download.suggestedFilename();
   expect(suggestedFileName).toMatch(/\.(csv|xlsx|pdf)$/i);
   const downloadsPath = path.resolve(__dirname, '../../temp_downloads');
   if (!fs.existsSync(downloadsPath)) {
@@ -43,8 +39,6 @@ test('Export Closed Batches', async ({ page }) => {
   }
   const filePath = path.join(downloadsPath, suggestedFileName);
   await download.saveAs(filePath);
-  console.log(`File saved to: ${filePath}`);
 
   expect(fs.existsSync(filePath)).toBeTruthy();
-  console.log('Export button clicked, download verified, and waits completed.');
 });

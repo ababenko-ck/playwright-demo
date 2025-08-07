@@ -49,7 +49,7 @@ export class TransactionsPage {
   }
 
    async waitForPageToLoad() {
-    await this.page.waitForLoadState('networkidle');  
+  await this.transactionTable.waitFor({ state: 'visible', timeout: 10000 });
   }
 
   async filterCustomersByCardholderName() {
@@ -100,7 +100,6 @@ export class TransactionsPage {
         await this.routingNumber.clear();
         await this.routingNumber.fill(this.rNumber);
 
-        // await this.accountNumber.clear();
         await this.accountNumber.fill(this.aNumber);
 
         await this.page.waitForTimeout(3000);
