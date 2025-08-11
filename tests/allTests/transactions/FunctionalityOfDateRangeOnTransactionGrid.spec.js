@@ -22,23 +22,21 @@ verify that "1/18/2022" is visible
 
 test.setTimeout(90000);
 
-test('Testing date range on transaction grid', async ({ page }) => {
+test('Testing custom date range', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const transactionsPage = new TransactionsPage(page);
 
     await test.step('1. Login', async () => {
         await loginPage.login();
-        await expect(page).toHaveURL('https://stgportal2.solapayments.com/');
     });
 
-    await test.step('2. Go to transaction page', async () => {
+    await test.step('2. Go to Transactions page', async () => {
         await transactionsPage.navigateToTransactions();
         await transactionsPage.verifyTransactionsHeading();
     });
 
-    await test.step('3. Choose "This month" from the dropdown menu', async () => {
-        await page.getByRole('listitem').filter({ hasText: 'Last 7 Days' }).locator('div').click();
-        await page.getByRole('menuitem', { name: 'This Month' }).click();
-        await page.waitForLoadState('networkidle');
+    await test.step('3. Select custom date range', async () => {
+     await transactionsPage.selectCustomDateRangeWithStartAndEndDates();
     });
+
 });

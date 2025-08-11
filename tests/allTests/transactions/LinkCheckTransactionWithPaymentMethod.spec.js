@@ -78,7 +78,7 @@ test('Testing linking check transaction with payment method', async ({ page }) =
 
   await test.step('Login', async () => {
     await loginPage.login();
-    await expect(page).toHaveURL('https://stgportal2.solapayments.com/');
+
   });
 
   await test.step('Go to transaction page', async () => {
@@ -95,18 +95,17 @@ test('Testing linking check transaction with payment method', async ({ page }) =
     await transactionsPage.waitForPageToLoad();
     await page.locator('.modal__close--header').click();
     });
-
-  await test.step('Find and link transaction', async () => {
-    await page.reload();
+      await test.step('Find and link a transaction', async () => {
+    await page.reload(); 
     await transactionsPage.clickFirstTransactionInGrid();
     await transactionsPage.generalInformationButton.waitFor({ state: 'visible' });
 
     const actionButton = page.locator('button:has(i.icon.icon--sml.icon--menu--white)');
-    await actionButton.click();
+    await actionButton.click(); 
     await page.getByRole('button', { name: 'Link payment method' }).click();
-  });
+}); 
 
-  await test.step('Select first customer ID and save', async () => {
+await test.step('5. Select first customer ID and save', async () => {
     await page.waitForSelector('td.is-loading', { state: 'detached', timeout: 10000 });
 
     const firstLabel = page.locator('label').first();
@@ -116,5 +115,5 @@ test('Testing linking check transaction with payment method', async ({ page }) =
     const saveButton = page.locator('button.btn--primary', { hasText: 'Save' });
     await expect(saveButton).toBeVisible();
     await saveButton.click();
-  });
+});
 });

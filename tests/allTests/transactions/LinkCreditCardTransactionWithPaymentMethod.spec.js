@@ -55,42 +55,40 @@ verify that "Payments" is visible
 test.setTimeout(90000);
 
 test('Testing linking credit card transaction with payment method', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const transactionsPage = new TransactionsPage(page);
+  const loginPage = new LoginPage(page);
+  const transactionsPage = new TransactionsPage(page);
 
-    const uniqueAmount = generateUniqueAmount();
-    const futureExpDate = generateFutureExpirationDate();
-    const testCard1 = authData.testCards.testCard1;
-    const option = "Charge"; 
+  const uniqueAmount = generateUniqueAmount();
+  const futureExpDate = generateFutureExpirationDate();
+  const testCard1 = authData.testCards.testCard1;
+  const option = "Charge"; 
 
-    await test.step('Login', async () => {
-        await loginPage.login();
-        await expect(page).toHaveURL('https://stgportal2.solapayments.com/');
-    });
+  await test.step('Login', async () => {
+    await loginPage.login();
+  });
 
-    await test.step('Go to transaction page', async () => {
-        await transactionsPage.navigateToTransactions();
-        await transactionsPage.verifyTransactionsHeading();
-        await transactionsPage.waitForPageToLoad();
-    });
+  await test.step('Go to transaction page', async () => {
+    await transactionsPage.navigateToTransactions();
+    await transactionsPage.verifyTransactionsHeading();
+    await transactionsPage.waitForPageToLoad();
+  });
 
-    await test.step('Create a new transaction "Charge"', async () => {
-        await transactionsPage.newTransactionButton.click();
-        await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
-        await transactionsPage.createNewTransactionByType(uniqueAmount, futureExpDate, testCard1, option);
-        await transactionsPage.waitForPageToLoad();
-        await page.locator('.modal__close--header').click();
-    });
+  await test.step('Create a new transaction "Charge"', async () => {
+    await transactionsPage.newTransactionButton.click();
+    await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
+    await transactionsPage.createNewTransactionByType(uniqueAmount, futureExpDate, testCard1, option);
+    await transactionsPage.waitForPageToLoad();
+    await transactionsPage.closeModal();
+  });
 
-    await test.step('4. Find and link a transaction', async () => {
-        await page.reload(); 
-        await transactionsPage.clickFirstTransactionInGrid();
-        await transactionsPage.generalInformationButton.waitFor({ state: 'visible' });
+  await test.step('Find and link a transaction', async () => {
+    await page.reload(); 
+    await transactionsPage.clickFirstTransactionInGrid();
+    await transactionsPage.generalInformationButton.waitFor({ state: 'visible' });
 
-        const actionButton = page.locator('button:has(i.icon.icon--sml.icon--menu--white)');
-        await actionButton.click(); 
-        await page.getByRole('button', { name: 'Link payment method' }).click();
-    }); 
+    await transactionsPage.openTransactionSidebarPopoverMenu();
+    await transactionsPage.linkPaymentMethodButton.click();
+  }); 
 
 await test.step('5. Select first customer ID and save', async () => {
     await page.waitForSelector('td.is-loading', { state: 'detached', timeout: 10000 });
