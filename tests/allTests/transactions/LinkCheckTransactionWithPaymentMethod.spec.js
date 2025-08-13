@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage';
 import { TransactionsPage } from '../../pages/transactionsPage';
 import { generateUniqueAmount, generateUniqueLastName } from '../../pages/Generator';
-import authData from '../../data/auth';
 
 /*
 LoginRebrand 
@@ -78,7 +77,6 @@ test('Testing linking check transaction with payment method', async ({ page }) =
 
   await test.step('Login', async () => {
     await loginPage.login();
-
   });
 
   await test.step('Go to transaction page', async () => {
@@ -90,30 +88,24 @@ test('Testing linking check transaction with payment method', async ({ page }) =
   await test.step('Create a new transaction "Checking"', async () => {
     await transactionsPage.newTransactionButton.click();
     await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
-
     await transactionsPage.createNewTransactionChecking(uniqueAmount, uniqueLastName, option);
     await transactionsPage.waitForPageToLoad();
-    await page.locator('.modal__close--header').click();
+    await transactionsPage.modalCloseHeaderButton.click();
     });
-      await test.step('Find and link a transaction', async () => {
+
+  await test.step('Find and link a transaction', async () => {
     await page.reload(); 
     await transactionsPage.clickFirstTransactionInGrid();
     await transactionsPage.generalInformationButton.waitFor({ state: 'visible' });
+    await transactionsPage.actionButton.click();
+    await transactionsPage.linkPaymentMethodButton.click();
 
-    const actionButton = page.locator('button:has(i.icon.icon--sml.icon--menu--white)');
-    await actionButton.click(); 
-    await page.getByRole('button', { name: 'Link payment method' }).click();
-}); 
-
-await test.step('5. Select first customer ID and save', async () => {
+  await test.step('5. Select first customer ID and save', async () => {
     await page.waitForSelector('td.is-loading', { state: 'detached', timeout: 10000 });
-
-    const firstLabel = page.locator('label').first();
-    await expect(firstLabel).toBeVisible();
-    await firstLabel.click();
-
-    const saveButton = page.locator('button.btn--primary', { hasText: 'Save' });
-    await expect(saveButton).toBeVisible();
-    await saveButton.click();
+    await transactionsPage.firstLabel.waitFor({ state: 'visible' });
+    await transactionsPage.firstLabel.click();
+    await transactionsPage.saveButton.waitFor({ state: 'visible' });
+    await transactionsPage.saveButton.click();
+});
 });
 });

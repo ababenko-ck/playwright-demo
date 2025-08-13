@@ -85,20 +85,15 @@ test('Testing linking credit card transaction with payment method', async ({ pag
     await page.reload(); 
     await transactionsPage.clickFirstTransactionInGrid();
     await transactionsPage.generalInformationButton.waitFor({ state: 'visible' });
-
     await transactionsPage.openTransactionSidebarPopoverMenu();
     await transactionsPage.linkPaymentMethodButton.click();
   }); 
 
 await test.step('5. Select first customer ID and save', async () => {
     await page.waitForSelector('td.is-loading', { state: 'detached', timeout: 10000 });
-
-    const firstLabel = page.locator('label').first();
-    await expect(firstLabel).toBeVisible();
-    await firstLabel.click();
-
-    const saveButton = page.locator('button.btn--primary', { hasText: 'Save' });
-    await expect(saveButton).toBeVisible();
-    await saveButton.click();
+    await transactionsPage.firstLabel.waitFor({ state: 'visible' });
+    await transactionsPage.firstLabel.click();
+    await transactionsPage.saveButton.waitFor({ state: 'visible' });
+    await transactionsPage.saveButton.click();
 });
 });
