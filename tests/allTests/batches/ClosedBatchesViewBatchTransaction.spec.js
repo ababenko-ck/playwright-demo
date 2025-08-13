@@ -15,7 +15,7 @@ wait 5 seconds
 verify that text "Batch" is visible on the page
 */
 
-test('Closed Batches View Batch Transactions', async ({ page }) => {
+test('Closed Batches View Batch Transaction', async ({ page }) => {
   test.setTimeout(240000);
 
   const loginPage = new LoginPage(page);

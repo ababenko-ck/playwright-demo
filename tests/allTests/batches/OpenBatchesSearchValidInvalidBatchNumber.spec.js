@@ -20,7 +20,7 @@ type enter
 verify that "0 results" is visible on the page
 */
 
-test('Open Batches Search Valid and Invalid Numbers', async ({ page }) => {
+test('Open Batches Search Valid and Invalid Batch Number', async ({ page }) => {
   test.setTimeout(180000);
 
   const loginPage = new LoginPage(page);

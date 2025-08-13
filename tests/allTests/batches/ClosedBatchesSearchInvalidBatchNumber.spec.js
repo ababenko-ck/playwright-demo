@@ -13,7 +13,7 @@ type enter
 verify that "0 results" is visible on the page
 */
 
-test('Closed Batches Search Invalid Number', async ({ page }) => {
+test('Closed Batches Search Invalid batch Number', async ({ page }) => {
   test.setTimeout(120000);
 
   const loginPage = new LoginPage(page);
