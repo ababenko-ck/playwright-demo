@@ -33,4 +33,6 @@ await loginPage.login();
 await dashboardPage.navigateToRecurringSchedules();
 await dashboardPage.waitForPageToLoad();
 await expect(recurringSchedulesPage.recurringHeading).toBeVisible();
+
+
 });
