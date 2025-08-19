@@ -21,7 +21,7 @@ export class LoginPage {
 
     this.logoImg = page.getByRole('img', { name: 'logo' });
     this.emailInput = page.getByRole('textbox', { name: 'user@email.com' });
-    this.emailInputCreateYourPassword = page.getByRole('textbox', { name: 'user@gmail.com' });
+    this.emailInputCreateYourPassword = page.getByRole('textbox', { name: 'user@email.com' });
     this.passwordInput = page.getByRole('textbox', { name: 'Enter your password' });
     this.rememberMeCheckbox = page.getByRole('checkbox', { name: 'Remember me' });
     this.formTitle = page.locator('.auth__form__title');

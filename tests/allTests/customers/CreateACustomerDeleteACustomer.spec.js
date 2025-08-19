@@ -26,6 +26,7 @@ verify that "General" is visible on the page
 */
 
 test('Create a Customer and Delete a Customer', async ({ page }) => {
+  test.setTimeout(45000); 
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
 

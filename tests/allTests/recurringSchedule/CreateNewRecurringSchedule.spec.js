@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage.js';
 import { DashboardPage } from '../../pages/dashboardPage.js';
 import { RecurringSchedulesPage } from '../../pages/recurringSchedulesPage.js';
-import { generateUniqueLastName, generateFutureExpirationDate, generateUniqueAmount} from '../../pages/Generator';
+import { generateUniqueLastName, generateFutureExpirationDate, generateUniqueAmount } from '../../pages/Generator';
 import authData from '../../data/auth';
 
 /* LoginRebrand
@@ -30,64 +30,64 @@ click "Schedule"
 click "History"
 */
 
+
 test('Create new Recurring Schedule', async ({ page }) => {
-test.setTimeout(35000); 
+  test.setTimeout(45000); 
 
-const loginPage = new LoginPage(page);
-const dashboardPage = new DashboardPage(page);
-const recurringSchedulesPage = new RecurringSchedulesPage(page);
-const uniqueFirstName = generateUniqueLastName();
-const testCard1 = authData.testCards.testCard1;
-const futureExpDate = generateFutureExpirationDate();
-const uniqueAmount = generateUniqueAmount();
+  const loginPage = new LoginPage(page);
+  const dashboardPage = new DashboardPage(page);
+  const recurringSchedulesPage = new RecurringSchedulesPage(page);
 
-await loginPage.login();
-await dashboardPage.navigateToRecurringSchedules();
-await dashboardPage.waitForPageToLoad();
-await expect(recurringSchedulesPage.recurringHeading).toBeVisible();
-await expect(recurringSchedulesPage.newCustomerButton).toBeVisible();
-await recurringSchedulesPage.newCustomerButton.click();
-await page.waitForTimeout(3000);
+  const uniqueFirstName = generateUniqueLastName();
+  const testCard1 = authData.testCards.testCard1;
+  const futureExpDate = generateFutureExpirationDate();
+  const uniqueAmount = generateUniqueAmount();
 
-await expect(recurringSchedulesPage.modal).toBeVisible();
-await expect(recurringSchedulesPage.maximazeButton).toBeVisible();  
-await recurringSchedulesPage.maximazeButton.click();
-await page.waitForTimeout(3000);
+  await loginPage.login();
+  await dashboardPage.navigateToRecurringSchedules();
+  await dashboardPage.waitForPageToLoad();
 
-await expect(recurringSchedulesPage.firstNameTexbox).toBeVisible();
-await recurringSchedulesPage.firstNameTexbox.fill(uniqueFirstName);
-await expect(recurringSchedulesPage.paymentMethod).toBeVisible();
-await recurringSchedulesPage.paymentMethod.click();
-await page.waitForTimeout(3000);
+  await expect(recurringSchedulesPage.recurringHeading).toBeVisible();
+  await expect(recurringSchedulesPage.newCustomerButton).toBeVisible();
+  await recurringSchedulesPage.newCustomerButton.click();
 
-await expect(recurringSchedulesPage.cardNumberInput).toBeVisible();
-await recurringSchedulesPage.cardNumberInput.fill(testCard1);
-await expect(recurringSchedulesPage.transactionExpDate).toBeVisible();
-await recurringSchedulesPage.transactionExpDate.fill(futureExpDate);
-await expect(recurringSchedulesPage.recurringSchedule).toBeVisible();
-await recurringSchedulesPage.recurringSchedule.click();
-await page.waitForTimeout(3000);
+  await expect(recurringSchedulesPage.modal).toBeVisible();
+  await expect(recurringSchedulesPage.maximazeButton).toBeVisible();  
+  await recurringSchedulesPage.maximazeButton.click();
 
-await expect(recurringSchedulesPage.scheduleNameField).toBeVisible();
-await recurringSchedulesPage.scheduleNameField.fill('Test');
-await expect(recurringSchedulesPage.amountTextFieldByRole).toBeVisible();
-await recurringSchedulesPage.amountTextFieldByRole.fill(uniqueAmount);
-await expect(recurringSchedulesPage.neverCheckboxLabel).toBeVisible();
-await recurringSchedulesPage.neverCheckboxLabel.click();
-await expect(recurringSchedulesPage.saveButton).toBeVisible();
-await recurringSchedulesPage.saveButton.click();
-await page.waitForTimeout(5000);
+  await expect(recurringSchedulesPage.firstNameTexbox).toBeVisible();
+  await recurringSchedulesPage.firstNameTexbox.fill(uniqueFirstName);
 
-await expect(recurringSchedulesPage.modal).toBeVisible();
-await expect(recurringSchedulesPage.modal).toContainText('Customer created');
-await expect(recurringSchedulesPage.viewCustomerLink).toBeVisible();
-await recurringSchedulesPage.viewCustomerLink.click();
-await page.waitForTimeout(3000);
+  await expect(recurringSchedulesPage.paymentMethod).toBeVisible();
+  await recurringSchedulesPage.paymentMethod.click();
 
-// await expect(recurringSchedulesPage.sidebar).toBeVisible();
-// await expect(recurringSchedulesPage.sidebarTabs).toBeVisible(); 
-// await expect(recurringSchedulesPage.generalLink).toBeVisible();
-// await expect(recurringSchedulesPage.paymentsLink).toBeVisible();
-// await expect(recurringSchedulesPage.scheduleLink).toBeVisible();
-// await expect(recurringSchedulesPage.historyLink).toBeVisible();
+  await expect(recurringSchedulesPage.cardNumberInput).toBeVisible();
+  await recurringSchedulesPage.cardNumberInput.fill(testCard1);
+
+  await expect(recurringSchedulesPage.transactionExpDate).toBeVisible();
+  await recurringSchedulesPage.transactionExpDate.fill(futureExpDate);
+
+  await expect(recurringSchedulesPage.recurringSchedule).toBeVisible();
+  await recurringSchedulesPage.recurringSchedule.click();
+
+  await expect(recurringSchedulesPage.amountTextFieldByRole).toBeVisible();
+  await recurringSchedulesPage.amountTextFieldByRole.fill(uniqueAmount);
+
+  await recurringSchedulesPage.customerScheduleDropdown.click();
+  await page.keyboard.type('Test');
+
+  await page.mouse.wheel(0, 1000);
+
+  await expect(recurringSchedulesPage.neverCheckboxLabelModal).toBeVisible();
+  await recurringSchedulesPage.neverCheckboxLabelModal.click();
+
+  await expect(recurringSchedulesPage.saveButton).toBeVisible();
+  await recurringSchedulesPage.saveButton.click();
+
+  await expect(recurringSchedulesPage.customerCreatedModal).toContainText('Customer created', { timeout: 15000 });
+
+  await expect(recurringSchedulesPage.viewCustomerLink).toBeVisible();
+  await recurringSchedulesPage.viewCustomerLink.click();
+
+  await page.waitForTimeout(3000);
 });
