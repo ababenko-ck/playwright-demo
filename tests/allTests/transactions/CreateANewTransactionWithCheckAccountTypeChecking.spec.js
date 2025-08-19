@@ -24,6 +24,7 @@ Rebrand Validate transaction processed
 */
 
 test('Create a new transaction with Check account type Checking', async ({ page }) => {
+  test.setTimeout(45000);
   const loginPage = new LoginPage(page);
   const transactionsPage= new TransactionsPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);

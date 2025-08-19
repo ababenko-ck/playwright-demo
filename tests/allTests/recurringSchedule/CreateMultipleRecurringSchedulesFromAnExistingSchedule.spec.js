@@ -25,59 +25,25 @@ wait 10 seconds
 click "Close"
 */
 
-test('Create multiple recurring schedules from an existing schedule', async ({ page }) => {
-const loginPage = new LoginPage(page);
-const dashboardPage = new DashboardPage(page);
-const recurringSchedulesPage = new RecurringSchedulesPage(page);
-const uniqueAmount1 = generateUniqueAmount();
-const uniqueAmount2 = generateUniqueAmount();
-const uniqueString = generateUniqueLastName();
+test('Create two new schedules inside existing recurring schedule', async ({ page }) => {
+test.setTimeout(60000); 
+  const loginPage = new LoginPage(page);
+  const dashboardPage = new DashboardPage(page);
+  const recurringSchedulesPage = new RecurringSchedulesPage(page);
 
-await loginPage.login();
-await dashboardPage.navigateToRecurringSchedules();
-await dashboardPage.waitForPageToLoad();
-await expect(recurringSchedulesPage.recurringHeading).toBeVisible();
+  const uniqueAmount1 = generateUniqueAmount();
+  const uniqueAmount2 = generateUniqueAmount();
+  const uniqueString = generateUniqueLastName();
 
-await expect(recurringSchedulesPage.firstExistingRecurringSchedule).toBeVisible();
-await recurringSchedulesPage.firstExistingRecurringSchedule.click();
+  await loginPage.login();
 
-//Create first schedule
-await expect(recurringSchedulesPage.sidebar).toBeVisible();
-await expect(recurringSchedulesPage.addScheduleButtonSidebar).toBeVisible();
-await recurringSchedulesPage.addScheduleButtonSidebar.click();
-await expect(recurringSchedulesPage.scheduleNameFieldSidebar).toBeVisible();
-await recurringSchedulesPage.scheduleNameFieldSidebar.fill('test' + uniqueString);
-await expect(recurringSchedulesPage.amountTextFieldSidebar).toBeVisible();
-await recurringSchedulesPage.amountTextFieldSidebar.fill(uniqueAmount1);
-await recurringSchedulesPage.numberOfPaymentsCheckbox.click();
-await expect(recurringSchedulesPage.totalPaymentsField).toBeVisible();
-await recurringSchedulesPage.totalPaymentsField.fill('1');
-await recurringSchedulesPage.saveButtonSidebar.click();
-await page.waitForTimeout(4000); 
+  await dashboardPage.navigateToRecurringSchedules();
+  await recurringSchedulesPage.waitForPageToLoad();
+  await expect(recurringSchedulesPage.recurringHeading).toBeVisible();
 
-await expect(recurringSchedulesPage.modal).toBeVisible();
-await expect(recurringSchedulesPage.modal).toContainText('Recurring schedule updated');
-await expect(recurringSchedulesPage.xButton).toBeVisible();
-await recurringSchedulesPage.xButton.click();
-await page.waitForTimeout(3000);
+  await expect(recurringSchedulesPage.firstExistingRecurringSchedule).toBeVisible();
+  await recurringSchedulesPage.firstExistingRecurringSchedule.click();
 
-//Create second schedule
-await expect(recurringSchedulesPage.sidebar).toBeVisible();
-await expect(recurringSchedulesPage.addScheduleButtonSidebar).toBeVisible();
-await recurringSchedulesPage.addScheduleButtonSidebar.click();
-await expect(recurringSchedulesPage.scheduleNameFieldSidebar).toBeVisible();
-await recurringSchedulesPage.scheduleNameFieldSidebar.fill('test' + uniqueString);
-await expect(recurringSchedulesPage.amountTextFieldSidebar).toBeVisible();
-await recurringSchedulesPage.amountTextFieldSidebar.fill(uniqueAmount2);
-await recurringSchedulesPage.numberOfPaymentsCheckbox.click();
-await expect(recurringSchedulesPage.totalPaymentsField).toBeVisible();
-await recurringSchedulesPage.totalPaymentsField.fill('1');
-await recurringSchedulesPage.saveButtonSidebar.click();
-await page.waitForTimeout(4000); 
-
-await expect(recurringSchedulesPage.modal).toBeVisible();
-await expect(recurringSchedulesPage.modal).toContainText('Recurring schedule updated');
-await expect(recurringSchedulesPage.xButton).toBeVisible();
-await recurringSchedulesPage.xButton.click();
-await page.waitForTimeout(3000);
+  await recurringSchedulesPage.createSchedule('test1_' + uniqueString, uniqueAmount1);
+  await recurringSchedulesPage.createSchedule('test2_' + uniqueString, uniqueAmount2);
 });

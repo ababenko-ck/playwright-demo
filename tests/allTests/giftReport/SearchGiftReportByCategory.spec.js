@@ -21,15 +21,14 @@ test('Search Gift report by category', async ({ page }) => {
 
   await giftReportPage.giftReportLink.click();
   await expect(giftReportPage.giftReportHeading).toBeVisible();
-  await giftReportPage.last90DaysText.click();
+
+  await giftReportPage.selectedDateRangeText.click();
   await giftReportPage.last90DaysListItem.click({ force: true });
 
   await page.waitForTimeout(1000);
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
-  
-    if (await giftReportPage.allButton.isVisible()) {
-    await giftReportPage.allButton.waitFor({ state: 'visible' });
+  if (await giftReportPage.allButton.isVisible()) {
     await giftReportPage.allButton.click({ force: true });
   } else {
     await expect(giftReportPage.emptyStateTitle).toHaveText('0 Results');

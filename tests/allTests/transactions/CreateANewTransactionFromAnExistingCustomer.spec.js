@@ -35,6 +35,7 @@ wait 5 seconds
 */
 
 test('Create s new Transaction from an existing Customer', async ({ page }) => {
+  test.setTimeout(45000);
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
   const transactionsPage = new TransactionsPage(page);

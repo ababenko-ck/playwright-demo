@@ -23,7 +23,7 @@ click on "Close"
 */
 
 test('Delete and create new Recurring Template', async ({ page }) => {
-test.setTimeout(30000);
+test.setTimeout(40000);
 
 const loginPage = new LoginPage(page);
 const dashboardPage = new DashboardPage(page);

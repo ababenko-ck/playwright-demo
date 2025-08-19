@@ -63,6 +63,7 @@ await expect(reportsPage.reactModal).not.toBeVisible();
 await page.waitForTimeout(3000);
 await expect(reportsPage.modalContent).toBeVisible();
 await expect(reportsPage.modalHeader).toBeVisible();
-await reportsPage.modalButton.click();
+await reportsPage.modalButtonX.click();
 await expect(reportsPage.modalContent).not.toBeVisible();
+
 });

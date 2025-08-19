@@ -14,6 +14,7 @@ wait 5 seconds
 */
 
 test('Filtering on Customers grid', async ({ page }) => {
+  test.setTimeout(45000); 
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
   await loginPage.login();

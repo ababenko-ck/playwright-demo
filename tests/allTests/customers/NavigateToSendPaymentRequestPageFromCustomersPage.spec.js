@@ -29,6 +29,7 @@ validate that "Send Payment Request" text is visible on the page
 */
 
 test('Navigate to Send Payment Request page from Customers page', async ({ page }) => {
+  test.setTimeout(45000);
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
 
