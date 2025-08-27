@@ -38,7 +38,6 @@ test('Create a new transaction with CC transaction type Save', async ({ page }) 
   await transactionsPage.waitForPageToLoad();
   await transactionsPage.newTransactionButton.click();
   await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
-  // await page.waitForTimeout(3000);
 
   await transactionsPage.createNewTransactionByType(uniqueAmount, futureExpDate, testCard1, option);
   await expect(transactionsPage.dialogXButton).toBeVisible();

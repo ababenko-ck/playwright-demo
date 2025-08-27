@@ -26,14 +26,12 @@ test('Gift Report Liability grid UI Validation', async ({ page }) => {
   await giftReportPage.liabilityButton.click();
   await page.waitForTimeout(3000);
 
-  //columns visibility validation
   await expect(giftReportPage.giftCardNumberColumn).toBeVisible();
   await expect(giftReportPage.remainingBalanceColumn).toBeVisible();
   await expect(giftReportPage.firstNameColumn).toBeVisible();
   await expect(giftReportPage.lastNameColumn).toBeVisible();
   await expect(giftReportPage.emailColumn).toBeVisible();
 
-  //buttons visibility validation
   await expect(giftReportPage.exportButton).toBeVisible();
   await expect(giftReportPage.printButton).toBeVisible(); 
 });

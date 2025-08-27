@@ -1,17 +1,18 @@
-import { Page, Locator } from '@playwright/test';
+import Locator from '../helpers/Locator';
 
 export class DashboardPage {
   constructor(page) {
     this.page = page;
-    this.reportsLink = page.getByRole('link', { name: 'Reports' });
-    this.dashboardLink = page.getByRole('link', { name: 'Dashboard' });
-    this.recurringSchedulesLink = page.getByRole('link', { name: 'Recurring Schedules' });
-    this.welcomeHeading = page.getByRole('heading', { name: 'Welcome to Sola' });
-    this.dateRangeMenu = page.getByRole('menu').locator('div');
-    this.customDateRangeButton = page.getByText('Custom', { exact: true });
+    this.locator = new Locator(this.page)
+    this.reportsLink = this.locator.getByRoleName('link', 'Reports');
+    this.dashboardLink = this.locator.getByRoleName('link', 'Dashboard');
+    this.recurringSchedulesLink = this.locator.getByRoleName('link', 'Recurring Schedules');
+    this.welcomeHeading = this.locator.getByRoleName('heading', 'Welcome to Sola' );
+    this.dateRangeMenu = this.locator.getByRoleName('menu').locator('div');
+    this.customDateRangeButton = this.locator.getByText('Custom', { exact: true });
     this.startDateInput = page.getByPlaceholder('MM/DD/YYYY').first();
     this.endDateInput = page.getByPlaceholder('MM/DD/YYYY').last();
-    this.applyButton = page.getByRole('button', { name: 'Apply' });
+    this.applyButton = this.locator.getByRoleName('button', 'Apply');
     this.daterangeText = page.locator('.rc-menu-input-text');
   }
 

@@ -36,7 +36,6 @@ test('Gift Report UI Validation', async ({ page }) => {
   await giftReportPage.giftReportLink.click();
   await expect(giftReportPage.giftReportHeading).toBeVisible();
 
-  //buttons visibility validation
   await expect(giftReportPage.activityButton).toBeVisible();
   await expect(giftReportPage.summaryButton).toBeVisible();
   await expect(giftReportPage.liabilityButton).toBeVisible();
@@ -45,7 +44,6 @@ test('Gift Report UI Validation', async ({ page }) => {
   await expect(giftReportPage.printButton).toBeVisible(); 
   await expect(giftReportPage.giftBalanceButton).toBeVisible();
   
-// date range functionality validation for "yesterday"
   await expect(giftReportPage.selectedDateRangeText).toBeVisible(); 
   await giftReportPage.selectedDateRangeText.click();
 
@@ -56,10 +54,8 @@ test('Gift Report UI Validation', async ({ page }) => {
   await giftReportPage.yesterdayOption.click({ force: true });
   await page.waitForTimeout(3000);
 
-  // await expect(giftReportPage.datePickerPopup).toBeHidden();
   await expect(giftReportPage.table).toBeVisible();
   
-  //columns visibility validation
   await expect(giftReportPage.referenceNumberColumn).toBeVisible();
   await expect(giftReportPage.giftCardNumberColumn).toBeVisible();
   await expect(giftReportPage.amountColumn).toBeVisible();
@@ -70,7 +66,6 @@ test('Gift Report UI Validation', async ({ page }) => {
   await expect(giftReportPage.invoiceColumn).toBeVisible();
   await expect(giftReportPage.custom01Column).toBeVisible();
 
-  // date range functionality validation for "custom"
   await expect(giftReportPage.selectedDateRangeText).toBeVisible(); 
   await giftReportPage.selectedDateRangeText.click();
 

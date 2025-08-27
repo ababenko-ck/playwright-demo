@@ -88,7 +88,6 @@ await reportsPage.reactModalInput.fill('New custom report');
 await reportsPage.reactModalButton.click();
 await expect(reportsPage.reactModal).not.toBeVisible();
 
-// await page.waitForTimeout(3000);
 await expect(reportsPage.modalContent).toBeVisible();
 await expect(reportsPage.modalHeader).toBeVisible();
 await reportsPage.modalButtonX.click();

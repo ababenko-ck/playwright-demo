@@ -1,32 +1,38 @@
+import Locator from '../helpers/Locator';
+
 export class DisputesPage {
   constructor(page) {
     this.page = page;
-    this.disputesLink = page.getByRole('link', { name: 'Disputes' });
-    this.DisputesHeading = page.getByRole('heading', { name: 'Disputes' });
-    this.exportButton = page.getByRole('button', { name: 'Export' });
-    this.printButton = page.getByRole('button', { name: 'Print' });
-    this.columnsButton = page.getByText('Columns');
-    this.selectAllButton = page.getByText('Select all');
-    this.addFilterButton = page.getByText('Add Filter');
-    this.cardNumberFilter = page.getByText('Card Number');
-    this.last4DigitsInput = page.getByRole('textbox', { name: 'Last 4 Digits' });
-    this.transactionAmountFilter = page.getByText('Transaction Amount');
-    this.transactionAmountInput = page.getByRole('textbox', { name: 'Transaction Amount' });
-    this.last4DigitsInput = page.getByRole('textbox', { name: 'Last 4 Digits' });
-    this.selectedCardNumberFilter = page.getByText('Card Number:');
-    this.selectedTransactionAmountFilter = page.getByText('Transaction Amount: $');
-    this.selectCurrency = page.getByText('Currency');
+    this.locator = new Locator(this.page)
+    this.disputesLink = this.locator.getByRoleName('link', 'Disputes');
+    this.DisputesHeading = this.locator.getByRoleName('heading', 'Disputes');
+    this.exportButton = this.locator.getByRoleName('button', 'Export');
+    this.printButton = this.locator.getByRoleName('button', 'Print');
+    this.columnsButton = this.locator.getByText('Columns');
+    this.selectAllButton = this.locator.getByText('Select all');
+    this.addFilterButton = this.locator.getByText('Add Filter');
+    this.cardNumberFilter = this.locator.getByText('Card Number');
+    this.last4DigitsInput = this.locator.getByRoleName('textbox', 'Last 4 Digits');
+    this.transactionAmountFilter = this.locator.getByText('Transaction Amount');
+    this.transactionAmountInput = this.locator.getByRoleName('textbox', 'Transaction Amount');
+    this.last4DigitsInput = this.locator.getByRoleName('textbox', 'Last 4 Digits');
+    this.selectedCardNumberFilter = this.locator.getByText('Card Number:');
+    this.selectedTransactionAmountFilter = this.locator.getByText('Transaction Amount: $');
+    this.selectCurrency = this.locator.getByText('Currency');
     // this.selectAllButton = page.locator('.rc-menu-list .rc-menu-list-item input').first();
-    this.doneButton = page.getByRole('button', { name: 'Done' });
-    this.loadingText = page.getByText('Loading...');
-    this.applyButton = page.getByRole('button', { name: 'Apply' });
+    this.doneButton = this.locator.getByRoleName('button', 'Done');
+    this.loadingText = this.locator.getByText('Loading...');
+    this.applyButton = this.locator.getByRoleName('button', 'Apply');
   }
+  
   async waitForPageToLoad() {
     await this.page.waitForLoadState('networkidle');
   }
+
     async navigateToDisputs() {
     await this.disputesLink .click();
   }
+  
   async selectCustomDateRangeWithStartAndEndDates() {
     const today = new Date();
     const month = today.toLocaleString('default', { month: 'short' });

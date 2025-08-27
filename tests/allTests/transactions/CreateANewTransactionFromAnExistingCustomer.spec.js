@@ -49,8 +49,9 @@ test('Create s new Transaction from an existing Customer', async ({ page }) => {
   await expect(addANewCustomerPage.firstCustomerInGrid).toBeVisible();
   await addANewCustomerPage.firstCustomerInGrid.click();
 
-  await transactionsPage.sidebarNewTransactionButton.click();
+  await transactionsPage.newTransactionButton.click();
   await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
+
   await addANewCustomerPage.createNewTransactionFromExistingCustomer(uniqueAmount, futureExpDate, testCard1);
 
   const referenceNumberText = await addANewCustomerPage.referenceNumber.textContent();

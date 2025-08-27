@@ -32,7 +32,6 @@ test('Gift Report Summary', async ({ page }) => {
   await giftReportPage.summaryButton.click();
   await page.waitForTimeout(3000);
 
-  // date range functionality validation for "custom"
   await expect(giftReportPage.selectedDateRangeText).toBeVisible(); 
   await giftReportPage.selectedDateRangeText.click();
 

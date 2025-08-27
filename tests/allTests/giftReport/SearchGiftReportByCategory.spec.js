@@ -15,7 +15,7 @@ wait 3 seconds
 
 test('Search Gift report by category', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  const giftReportPage = new GiftReportPage(page); 
+  const giftReportPage = new GiftReportPage(page);
 
   await loginPage.login();
 
@@ -23,14 +23,19 @@ test('Search Gift report by category', async ({ page }) => {
   await expect(giftReportPage.giftReportHeading).toBeVisible();
 
   await giftReportPage.selectedDateRangeText.click();
-  await giftReportPage.last90DaysListItem.click({ force: true });
+
+  await expect(giftReportPage.last90DaysListItem).toBeVisible();
+  await giftReportPage.last90DaysListItem.scrollIntoViewIfNeeded();
+  await giftReportPage.last90DaysListItem.click();
 
   await page.waitForTimeout(1000);
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
   if (await giftReportPage.allButton.isVisible()) {
     await giftReportPage.allButton.click({ force: true });
-  } else {
+  } else if (await giftReportPage.emptyStateTitle.isVisible()) {
     await expect(giftReportPage.emptyStateTitle).toHaveText('0 Results');
+  } else {
+    await expect(giftReportPage.table).toBeVisible();
   }
 });

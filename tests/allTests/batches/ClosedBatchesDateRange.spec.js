@@ -20,5 +20,4 @@ test('Closed Batches Date Range Selection - Last 7 Days', async ({ page }) => {
   await loginPage.login();
   await batchesPage.goToClosedBatchesDirectly();
   await batchesPage.selectLast7DaysDateRange();
-
 });

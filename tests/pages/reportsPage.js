@@ -1,17 +1,20 @@
-import { Page, Locator } from '@playwright/test';
+import Locator from '../helpers/Locator';
 
 export class ReportsPage {
   constructor(page) {
     this.page = page;
-    this.reportsHeading = page.getByRole('heading', { name: 'Reports', exact: true });
-    this.viewReportButton = page.getByRole('button', { name: 'View Report' });
-    this.saveReportButton = page.getByRole('button', { name: 'Save Report' });
+    this.locator = new Locator(this.page)
+    this.reportsHeading = this.locator.getByRoleName('heading', 'Reports', this.page, { exact: true });
+    this.viewReportButton = this.locator.getByRoleName('button', 'View Report');
+    this.saveReportButton = this.locator.getByRoleName('button', 'Save Report');
     this.cardFirst = page.locator('.col .card').first();
-    this.exportButton = this.cardFirst.getByRole('button', { name: 'Export' });
-    this.printButton = this.cardFirst.getByRole('button', { name: 'Print' });
-    this.transactionsHeading = page.getByRole('heading');
+    this.exportButton = this.locator.getByRoleName('button', 'Export', this.cardFirst, { exact: true });
+    this.printButton = this.locator.getByRoleName('button', 'Print', this.cardFirst, { exact: true });
+    this.saveReportButton = this.locator.getByRoleName('button', 'Save Report', this.cardFirst, { exact: true });
+    this.viewReportButton = this.locator.getByRoleName('button', 'View Report', this.cardFirst, { exact: true });
+    this.transactionsHeading = this.locator.getByRoleName('heading');
     this.reportTypeDropdown = page.locator('div:nth-child(3) > .css-1pcexqc-container > .css-bg1rzq-control > .css-1hwfws3');
-    this.allTextOption = page.getByText('All', { exact: true });
+    this.allTextOption = this.locator.getByText('All', { exact: true });
     this.otherReportsViewIcon = page.locator('div.card:has-text("Other Reports") .icon--view');
     this.todayCardLocator = page.locator('.card .rc-menu-input-text');
     this.datepickerTooltip = page.locator('.rc-menu-datepicker-tooltip');
@@ -25,17 +28,14 @@ export class ReportsPage {
     this.reactModalHeader = page.locator('.ReactModal__Content .modal__header');
     this.reactModalInput = page.locator('.ReactModal__Content input');
     // this.reactModalButton = page.locator('.ReactModal__Content button');
-    this.reactModalButton = this.reactModal.getByRole('button', { name: 'Save' });
-
-    // Modal
+    this.reactModalButton = this.locator.getByRoleName('button', 'Save', this.reactModal);
     this.modalContent = page.locator('.modal__content__wrapper');
     this.modalHeader = this.modalContent.getByText('Custom report saved', { exact: true });
     this.modalHeaderConfirm = this.modalContent.locator('.modal__header');
-    this.modalButton = this.modalContent.getByRole('button', { name: 'Close' });
+    this.modalButton = this.locator.getByRoleName('button', 'Close', this.modalContent);
     this.modalButtonX = this.modalContent.locator('.icon--close--text');
-    this.modalButtonDelete = this.modalContent.getByRole('button', { name: 'Delete Report' });
-    this.modalButtonSaveAsNew = this.modalContent.getByRole('button', { name: 'Save As New' });
-
+    this.modalButtonDelete = this.locator.getByRoleName('button', 'Delete Report', this.modalContent);
+    this.modalButtonSaveAsNew = this.locator.getByRoleName('button', 'Save As New', this.modalContent);
     this.customSavedReportsModal = page.locator('.col .spc--bottom--sml--alt').first();
     this.deleteReportButton = page.locator('[data-tooltip="Delete"]').first();
     this.editReportButton = page.locator('[data-tooltip="Edit"]').first();
@@ -44,10 +44,8 @@ export class ReportsPage {
     this.invoiceTextbox = page.locator('#invoice');
     this.card = page.locator('.col .card').last();
     this.exportOtherReportsButton = this.card.locator('[data-tooltip="Export"]').last();
-
-    // Advance Filters
-    this.advanceFiltersLink = page.getByRole('link', { name: 'Advance filters' });
-    this.hideAdvanceFiltersLink = page.getByRole('link', { name: 'Hide advance filters' });
+    this.advanceFiltersLink = this.locator.getByRoleName('link', 'Advance filters');
+    this.hideAdvanceFiltersLink = this.locator.getByRoleName('link', 'Hide advance filters');
     this.amountLabel = page.locator('label[for="Amount"]');
     this.amountInput = page.locator('#amount');
     this.cardNumberLabel = page.locator('label[for="Card Number"]');    
@@ -65,5 +63,4 @@ export class ReportsPage {
    async waitForPageToLoad() {
     await this.page.waitForLoadState('networkidle');  
   }
-
 }

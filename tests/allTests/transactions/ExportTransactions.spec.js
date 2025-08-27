@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage';
 import { TransactionsPage } from '../../pages/transactionsPage';
+
 /*LoginRebrand
 click on "Transactions" page
 wait 3 seconds

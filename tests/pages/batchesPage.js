@@ -1,31 +1,30 @@
 import { expect } from '@playwright/test';
+import Locator from '../helpers/Locator';
 
 export class BatchesPage {
   constructor(page) {
     this.page = page;
-
-    this.batchesLink = page.getByRole('link', { name: 'Batches' });
-    this.openBatchesButton = page.getByRole('button', { name: 'Open Batches' });
-    this.closedBatchesButton = page.getByRole('button', { name: 'Closed Batches' });
-    this.showSummaryButton = page.getByRole('button', { name: 'Show Summary' });
-    this.breakdownByCardText = page.getByText('Breakdown by Card');
-    this.exportButton = page.getByRole('button', { name: 'Export' });
-    this.printButton = page.getByRole('button', { name: 'Print' });
-    this.saleSummaryText = page.getByText('SALE SUMMARY BY CARD TYPE');
-    this.creditSummaryText = page.getByText('CREDIT SUMMARY BY CARD TYPE');
-    this.batchSummaryText = page.getByText('Batch Summary');
+    this.locator = new Locator(this.page)
+    this.batchesLink = this.locator.getByRoleName('link','Batches');
+    this.openBatchesButton = this.locator.getByRoleName('button', 'Open Batches');
+    this.closedBatchesButton = this.locator.getByRoleName('button', 'Closed Batches');
+    this.showSummaryButton = this.locator.getByRoleName('button','Show Summary');
+    this.breakdownByCardText = this.locator.getByText('Breakdown by Card');
+    this.exportButton = this.locator.getByRoleName('button', 'Export');
+    this.printButton = this.locator.getByRoleName('button', 'Print');
+    this.saleSummaryText = this.locator.getByText('SALE SUMMARY BY CARD TYPE');
+    this.creditSummaryText = this.locator.getByText('CREDIT SUMMARY BY CARD TYPE');
+    this.batchSummaryText = this.locator.getByText('Batch Summary');
     this.countText = page.locator('.pie-chart-text.count');
-    this.openBatchesLoaded = page.getByRole('button', { name: 'ID #' });
+    this.openBatchesLoaded = this.locator.getByRoleName('button', 'ID #');
     this.searchByBatchNumberInput = page.getByPlaceholder('Search by Batch Number');
-    this.noResultsText = page.getByText('0 results');
+    this.noResultsText = this.locator.getByText('0 results');
     this.firstOpenBatchIdElement = page.locator('div.flex--primary.type--wgt--medium').first();
     this.getViewBatchTransactionsButton = (batchId) => page.getByTestId(`view-batch-transactions-button-${batchId}`);
-    this.transactionsHeading = (pageContext) => pageContext.getByRole('heading', { name: 'Transactions' });
-    this.dateRangeDropdown = page.getByText('Last 30 Days'); 
-    this.last7DaysOption = page.getByRole('menuitem', { name: 'Last 7 Days' }); 
+    this.transactionsHeading = (pageContext) => pageContext.getByRole('heading',  'Transactions');
+    this.dateRangeDropdown = this.locator.getByText('Last 30 Days'); 
+    this.last7DaysOption = this.locator.getByRoleName('menuitem', 'Last 7 Days'); 
     this.selectedDateRangeDisplay = page.locator('div.filter__toolbar__selected-filter').first();
-
-
   }
 
   async navigateToOpenBatches() {
@@ -84,5 +83,4 @@ export class BatchesPage {
     await this.last7DaysOption.click();
     await this.page.waitForTimeout(60000); 
   }
-
 }

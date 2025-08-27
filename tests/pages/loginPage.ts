@@ -18,7 +18,6 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-
     this.logoImg = page.getByRole('img', { name: 'logo' });
     this.emailInput = page.getByRole('textbox', { name: 'user@email.com' });
     this.emailInputCreateYourPassword = page.getByRole('textbox', { name: 'user@email.com' });
@@ -37,7 +36,6 @@ export class LoginPage {
     await this.gotoLoginPage(environment);
     const user = authData[environment].credentials.username;
     const pass = authData[environment].credentials.password;
-
     await this.emailInput.fill(user);
     await this.passwordInput.fill(pass);
     await this.submitButton.click();
@@ -48,7 +46,6 @@ export class LoginPage {
 
     async failedLogin(user, pass, environment = 'stg'){
     await this.gotoLoginPage(environment);
-
     await this.emailInput.fill(user);
     await this.passwordInput.fill(pass);
     await this.submitButton.click();

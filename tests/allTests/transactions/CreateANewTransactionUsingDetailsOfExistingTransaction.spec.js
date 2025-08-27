@@ -46,7 +46,6 @@ test('Create a new transaction using details of existing transaction', async ({ 
 
   await transactionsPage.clickFirstTransactionInGrid();
   await expect(transactionsPage.generalInformationButton).toBeVisible();
-  await expect(transactionsPage.sidebarNewTransactionButton).toBeVisible();
   await transactionsPage.sidebarNewTransactionButton.click();
   await expect(transactionsPage.addNewTransactionHeading).toBeVisible();
   await addANewCustomerPage.createNewTransactionFromExistingCustomerWithCard(uniqueAmount);
