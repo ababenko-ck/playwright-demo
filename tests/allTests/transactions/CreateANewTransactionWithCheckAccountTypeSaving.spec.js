@@ -1,10 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage';
 import { AddANewCustomerPage } from '../../pages/addANewCustomer';
-import { generateFutureExpirationDate, generateUniqueAmount, generateUniqueLastName } from '../../pages/Generator';
-import authData from '../../data/auth';
+import { generateUniqueAmount, generateUniqueLastName } from '../../pages/Generator';
 import { TransactionsPage } from '../../pages/transactionsPage';
-import { waitForDebugger } from 'inspector';
 
 /*LoginRebrand
 click on "Transactions" page

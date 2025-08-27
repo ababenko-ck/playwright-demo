@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage.js';
 import { ReportsPage } from '../../pages/reportsPage.js';
-import { TransactionsPage } from '../../pages/transactionsPage.js';
 import { DashboardPage } from '../../pages/dashboardPage.js';
 
 /* LoginRebrand
@@ -28,7 +27,6 @@ click on "close"
 test('Create a Custom Saved Report', async ({ page }) => {
 const loginPage = new LoginPage(page);
 const reportsPage = new ReportsPage(page);
-const transactionsPage = new TransactionsPage(page);
 const dashboardPage = new DashboardPage(page);
 
 await loginPage.login();
@@ -59,11 +57,10 @@ await reportsPage.reactModalInput.click();
 await reportsPage.reactModalInput.fill('New custom report');
 await reportsPage.reactModalButton.click();
 await expect(reportsPage.reactModal).not.toBeVisible();
-
 await page.waitForTimeout(3000);
+
 await expect(reportsPage.modalContent).toBeVisible();
 await expect(reportsPage.modalHeader).toBeVisible();
 await reportsPage.modalButtonX.click();
 await expect(reportsPage.modalContent).not.toBeVisible();
-
 });

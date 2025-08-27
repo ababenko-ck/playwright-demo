@@ -31,17 +31,18 @@ test('Gift Report Summary grid UI Validation', async ({ page }) => {
   await giftReportPage.summaryButton.click();
   await page.waitForTimeout(3000);
 
+  //columns visibility validation
   await expect(giftReportPage.locationColumn).toBeVisible();
   await expect(giftReportPage.transactionCountColumn).toBeVisible();
   await expect(giftReportPage.totalAmountColumn).toBeVisible();
   await expect(giftReportPage.parentLocationColumn).toBeVisible();
 
+  //buttons visibility validation
   await expect(giftReportPage.exportButton).toBeVisible();
   await expect(giftReportPage.printButton).toBeVisible(); 
 
   await expect(giftReportPage.selectedDateRangeText).toBeVisible(); 
   await giftReportPage.selectedDateRangeText.click();
-
   await page.waitForTimeout(2000);
   await expect(giftReportPage.datePickerPopup).toBeVisible();
 
@@ -50,6 +51,5 @@ test('Gift Report Summary grid UI Validation', async ({ page }) => {
   await page.waitForTimeout(2000);
 
   await expect(giftReportPage.datePickerPopup).toBeHidden();
-
   await expect(giftReportPage.table).toBeVisible();
 });

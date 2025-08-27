@@ -1,7 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage.js';
-import { ReportsPage } from '../../pages/reportsPage.js';
-import { TransactionsPage } from '../../pages/transactionsPage.js';
 import { DashboardPage } from '../../pages/dashboardPage.js';
 import { RecurringSchedulesPage } from '../../pages/recurringSchedulesPage.js';
 import { generateUniqueAmount, generateUniqueLastName} from '../../pages/Generator';

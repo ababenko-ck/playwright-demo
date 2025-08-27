@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 import { TransactionsPage } from '../../pages/transactionsPage';  
 import { LoginPage } from '../../pages/loginPage';
 import { AddANewCustomerPage } from '../../pages/addANewCustomer';
-import { generateFutureExpirationDate, generateUniqueAmount } from '../../pages/Generator';
-import authData from '../../data/auth';
+import { generateUniqueAmount } from '../../pages/Generator';
 
 /*LoginRebrand
 click on "Transactions" page
@@ -34,9 +33,7 @@ test('Create a new transaction using details of existing transaction', async ({ 
   const loginPage = new LoginPage(page);
   const addANewCustomerPage = new AddANewCustomerPage(page);
   const transactionsPage = new TransactionsPage(page);
-  const futureExpDate = generateFutureExpirationDate();
   const uniqueAmount = generateUniqueAmount();
-  const testCard1 = authData.testCards.testCard1;
   
   await loginPage.login();
 

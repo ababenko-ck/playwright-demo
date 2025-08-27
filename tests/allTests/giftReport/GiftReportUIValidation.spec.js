@@ -36,6 +36,7 @@ test('Gift Report UI Validation', async ({ page }) => {
   await giftReportPage.giftReportLink.click();
   await expect(giftReportPage.giftReportHeading).toBeVisible();
 
+  //buttons visibility validation
   await expect(giftReportPage.activityButton).toBeVisible();
   await expect(giftReportPage.summaryButton).toBeVisible();
   await expect(giftReportPage.liabilityButton).toBeVisible();
@@ -56,6 +57,7 @@ test('Gift Report UI Validation', async ({ page }) => {
 
   await expect(giftReportPage.table).toBeVisible();
   
+  //buttons visibility validation
   await expect(giftReportPage.referenceNumberColumn).toBeVisible();
   await expect(giftReportPage.giftCardNumberColumn).toBeVisible();
   await expect(giftReportPage.amountColumn).toBeVisible();

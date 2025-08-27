@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/loginPage.js';
 import { ReportsPage } from '../../pages/reportsPage.js';
-import { TransactionsPage } from '../../pages/transactionsPage.js';
 import { DashboardPage } from '../../pages/dashboardPage.js';
 
 /* LoginRebrand
@@ -35,7 +34,6 @@ click on "Hide advance filters"
 test('Validate Report Filters with Save Report', async ({ page }) => {
 const loginPage = new LoginPage(page);
 const reportsPage = new ReportsPage(page);
-const transactionsPage = new TransactionsPage(page);
 const dashboardPage = new DashboardPage(page);
 
 await loginPage.login();

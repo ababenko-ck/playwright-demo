@@ -21,7 +21,6 @@ test('Search Gift report by category', async ({ page }) => {
 
   await giftReportPage.giftReportLink.click();
   await expect(giftReportPage.giftReportHeading).toBeVisible();
-
   await giftReportPage.selectedDateRangeText.click();
 
   await expect(giftReportPage.last90DaysListItem).toBeVisible();
